@@ -1,9 +1,15 @@
-
+import discord
 
 # load bot key
-from env import KEY, ROLE
+from env import KEY
 
-import discord
+# not needed
+try:
+    from env import ROLE
+except Exception:
+    ROLE = None
+
+
 
 intents = discord.Intents.default()
 intents.message_content = True
