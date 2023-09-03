@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     try:
 
-        app.run()
+        app.run(host="0.0.0.0")
 
     except: # bare except to catch KeyboardInterrupt too
         bot_process.kill()
