@@ -1,23 +1,39 @@
 
 
 # load bot key
-with open(".env") as file:
-    KEY = file.readline().strip()
+from env import KEY, ROLE
 
 import discord
 
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = discord.Client(intents = intents)
 
 
-bot = discord.Bot(command_prefix="!", intents = discord.Intents.all(), help_command=help_command)
+def update_counter():
+    with open("tmp", "w") as file:
+        file.write(f"{bot.ping_count}")
+
+
+# count how many times door has been pinged
+bot.ping_count = 0
+update_counter()
 
 
 @bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
-    if message.content.lower() == 'door':
-        pass
+    print(message.content)
+
+    if "door" in message.content.lower() or ROLE in message.content.lower():
+        # await message.channel.send("testing")
+
+        bot.ping_count += 1
+        update_counter()
 
 
-bot.run(KEY)
+if __name__ == "__main__": 
+    bot.run(KEY)
