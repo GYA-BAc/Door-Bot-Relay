@@ -1,4 +1,4 @@
-# A Notification Bot
+# A Discord Notification Bot
 
 ## Meant to circumvent wifi restrictions (blocked domains)
 
